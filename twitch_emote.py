@@ -2,7 +2,7 @@ import sys
 import os.path
 
 
-def twitch_emote(emote, size = '1.0'):
+def twitch_emote(emote = "", size = '1.0'):
     current_dir = os.path.dirname(sys.argv[0])
     if size.lower() == 'medium' or size.lower() == 'm' or size.lower() == 'mid' or size.lower() == 'med':
         size = '2.0'
@@ -12,6 +12,8 @@ def twitch_emote(emote, size = '1.0'):
     if os.path.isfile(emote_path):
         return emote_path
     else:
-        return "Emote not found!\nPlease use a vaild face emote from https://twitchemotes.com"
+        return (emote+" emote not found!\nplease use a vaild face emote from <https://twitchemotes.com>").strip()
 
-print(twitch_emote('stinkychfeese','medium'))
+# args = ['f']
+# print(twitch_emote(args[0]))
+# print(twitch_emote('stinkychfeese','medium'))

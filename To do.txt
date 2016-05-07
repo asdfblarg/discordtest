@@ -12,8 +12,7 @@
 
 - use PIL to add text to image in python
 - figure out sui and tamamo interactions
--test merge
-
+- logs: 2016-05-06 01:56:28.560000 | Death To Mumble | boomersauce | #general |
 
 - league api commands
 - music bot

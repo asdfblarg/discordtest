@@ -36,10 +36,13 @@ def on_message(message):
         print('message received from', message.channel,"by",message.author,"in", message.server.id)
     else:
         print('message received from', message.channel,"by",message.author)
-    try:
-        print(message.content)# testing emojis
-    except:
-        print(message.content.encode("utf-8"))
+    print(message.clean_content.encode("utf-8"))
+    print(message.content.encode("utf-8"))
+    # try:
+    #     print(message.clean_content.encode("utf-8"))
+    #     print(message.content)# testing emojis
+    # except:
+    #     print(message.content.encode("utf-8"))
     # if message.content.startswith('!test'):
     #     yield from client.send_message(message.channel, testing.hangman())
     if message.content.startswith('!sin'):
@@ -114,13 +117,17 @@ def on_message(message):
     if message.content.startswith('!randmember'):
         yield from client.send_message(message.channel, str(random.choice(list(message.server.members))))
 
-    if message.content.startswith('!twitch'):
+    if message.content.startswith('!twitch') or message.content.startswith('!emote'):
         args = message.content[7:].strip().split(" ")
-        print(args)
-        if len(args) == 2:
-            yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0],args[1]))
-        else:
-            yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0]))
+        print(len(args))
+        try:
+            if len(args) > 1:
+                yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0],args[1]))
+            else:
+                yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0]))
+        except OSError:
+            yield from client.send_message(message.channel, twitch_emote.twitch_emote(args[0]))
+
 #################
 
     if message.content.startswith('!giveup'):
@@ -143,7 +150,7 @@ def on_message(message):
         shitpaulsonsays = ['same','tfti',"cuz im a deadchampion","k",'hon hon baguette','what']
         yield from client.send_message(message.channel,random.choice(shitpaulsonsays))#,tts=True)
 
-    if "china" in message.content.lower() or ":flag_cn:" in message.content.lower():
+    if "china" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
         yield from client.send_message(message.channel,'F U C K  C H I N A')
 
     # if "darren" in message.content.lower():

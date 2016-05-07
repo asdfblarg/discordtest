@@ -33,4 +33,4 @@ def download_face_emotes(size):
 
 
 # download_special_turbo_emotes()
-download_face_emotes(size = '1.0')
+# download_face_emotes(size = '1.0')
