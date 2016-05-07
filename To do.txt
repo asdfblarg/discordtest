@@ -1,0 +1,25 @@
+- dumping lewd or any web link to specific channel
+- wilson: @mention a random online member to do something // !shotnot
+- make lewd have rating checker
+- dice / rand gamble
+- add 'or' functionality to !choice
+- @sui-bot say command
+- lern to delete and edit messages
+- lern to send attachments
+- set game command
+- get user id with @mention or !uid
+- add twitch emotes // benny
+
+- use PIL to add text to image in python
+- figure out sui and tamamo interactions
+
+- league api commands
+- music bot
+
+
+# future shit?
+- get all sui youbi cropped images // maybe learn to shop out backgrounds
+- add more sass / sui mentions
+- refactor code to be more modular
+MTc2MTI3MjMwNzc3MzYwMzg1.CgbexA.wqSaQVML42D4MC9qHoUxg45D_7Q
+
