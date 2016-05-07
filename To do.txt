@@ -12,6 +12,8 @@
 
 - use PIL to add text to image in python
 - figure out sui and tamamo interactions
+-test merge
+
 
 - league api commands
 - music bot
