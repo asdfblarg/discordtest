@@ -223,8 +223,8 @@
 # print(string.rstrip('</strong>'))
 
 
-import calendar
-from datetime import date
-print(calendar.month(date.today().year,date.today().month))
-# c = calendar.TextCalendar(calendar.SUNDAY)
-# c.prmonth(date.today().year,date.today().month)
+# import calendar
+# from datetime import date
+# print(calendar.month(date.today().year,date.today().month))
+# # c = calendar.TextCalendar(calendar.SUNDAY)
+# # c.prmonth(date.today().year,date.today().month)

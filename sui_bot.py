@@ -8,6 +8,11 @@ import asyncio
 import random
 import rand_choice
 import fleentstones
+
+
+import calendar
+from datetime import date
+
 import twitch_emote
 import testing
 logging.basicConfig(level=logging.INFO)
@@ -70,6 +75,11 @@ def on_message(message):
     if message.content.startswith('!salt'):
         yield from client.send_message(message.channel,fleentstones.salt)
 
+    if message.content.startswith('!calendar') or message.content.startswith('!cal'):
+        cal = calendar.month(date.today().year,date.today().month)
+        # print(cal)
+        yield from client.send_message(message.channel,"```" + cal + "```")
+
     if "dank" in message.content.lower():
         yield from client.send_message(message.channel,fleentstones.dank)
 
@@ -128,13 +138,20 @@ def on_message(message):
         except OSError:
             yield from client.send_message(message.channel, twitch_emote.twitch_emote(args[0]))
 
+    if message.content.startswith('!gotstream'):
+        yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \n<http://comfy.zone/> \nnot live: \n<http://www.streamlord.com/watch-tvshow-Game-of-thrones-2.html>')
+
 #################
 
     if message.content.startswith('!giveup'):
         yield from client.send_message(message.channel,'ＮＥＶＥＲ ＧＩＶＥ ＵＰ')
 
     if message.content.startswith('!howard'):
-        yield from client.send_message(message.channel,'http://puu.sh/oFvXh/c73ed52869.jpg')
+        if message.content.startswith('!howardbutt'):
+            yield from client.send_message(message.channel,'http://puu.sh/oNKua/2dd17969bd.png')
+        else:
+            yield from client.send_message(message.channel,'http://puu.sh/oFvXh/c73ed52869.jpg')
+
 
 #inside jokes
     if "justice" in message.content.lower():
@@ -150,7 +167,7 @@ def on_message(message):
         shitpaulsonsays = ['same','tfti',"cuz im a deadchampion","k",'hon hon baguette','what']
         yield from client.send_message(message.channel,random.choice(shitpaulsonsays))#,tts=True)
 
-    if "china" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
+    if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
         yield from client.send_message(message.channel,'F U C K  C H I N A')
 
     # if "darren" in message.content.lower():
