@@ -17,8 +17,13 @@ def choose(string):
     else:
         string = shlex.split(string)
 
+    unique = set(string)
+    if len(unique) == 1:
+        return "Same choice is cheating!"
+
     return random.choice(string).strip()
 
 # print(choose("!choose don't go to school, 'go to school' "))
 # print(choose('!choose don\'t go to school, "go to school" '))
 # print(choose("!choice do something, don't do something"))
+# print(choose("!choice test,test ,test"))

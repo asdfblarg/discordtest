@@ -14,7 +14,8 @@ import calendar
 from datetime import date
 
 import twitch_emote
-import testing
+# import testing
+
 logging.basicConfig(level=logging.INFO)
 
 # logger = logging.getLogger('discord')
@@ -80,15 +81,16 @@ def on_message(message):
         # print(cal)
         yield from client.send_message(message.channel,"```" + cal + "```")
 
-    if "dank" in message.content.lower():
-        yield from client.send_message(message.channel,fleentstones.dank)
-
-    if "sui" in message.content.lower():
+    if "sui" in message.content.lower().split():
         sui_reply = ['huh?', 'ehh?', 'hmm?', 'hah?', 'eh?']
-        yield from client.send_message(message.channel,random.choice(sui_reply))
+        if random.randrange(10) < 4:
+            yield from client.send_message(message.channel,random.choice(sui_reply))
 
     if "stfu" in message.content.lower():
         yield from client.send_message(message.channel,'no you!')
+
+    if message.content.startswith('!say'):
+        yield from client.send_message(message.channel, message.content[4:].strip())
 
     if message.content.startswith('!list'):
         memberslist = message.server.members
@@ -139,7 +141,7 @@ def on_message(message):
             yield from client.send_message(message.channel, twitch_emote.twitch_emote(args[0]))
 
     if message.content.startswith('!gotstream'):
-        yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \n<http://comfy.zone/> \nnot live: \n<http://www.streamlord.com/watch-tvshow-Game-of-thrones-2.html>')
+        yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \t<http://comfy.zone/> \nnot live: \n<http://www.streamlord.com/watch-tvshow-Game-of-thrones-2.html>')
 
 #################
 
@@ -154,6 +156,19 @@ def on_message(message):
 
 
 #inside jokes
+
+    if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
+        yield from client.send_message(message.channel,'F U C K  C H I N A')
+
+    try:
+        if message.server.id == '119847653063262209':
+            return
+    except:
+        print("blocked by snuggle censor") # is this needed?
+
+    if "dank" in message.content.lower():
+        yield from client.send_message(message.channel,fleentstones.dank)
+
     if "justice" in message.content.lower():
         yield from client.send_message(message.channel,'http://media.cleveland.com/books_impact/photo/justicejpg-a19610f0697fbc7a.jpg')
 
@@ -164,11 +179,11 @@ def on_message(message):
         yield from client.send_message(message.channel,'( ͡° ͜◯ ͡°) ＣＬＯＷＮ ＦＩＥＳＴＡ ( ͡° ͜◯ ͡°) ')
 
     if message.content.startswith("!paulson"):
-        shitpaulsonsays = ['same','tfti',"cuz im a deadchampion","k",'hon hon baguette','what']
+        shitpaulsonsays = ['same','tfti',"k",'hon hon baguette','what','punda']
         yield from client.send_message(message.channel,random.choice(shitpaulsonsays))#,tts=True)
 
-    if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
-        yield from client.send_message(message.channel,'F U C K  C H I N A')
+    # if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
+    #     yield from client.send_message(message.channel,'F U C K  C H I N A')
 
     # if "darren" in message.content.lower():
     #     yield from client.send_message(message.channel,'thug lyfe')
@@ -191,10 +206,10 @@ def on_message(message):
 client.run(bot_login.user,bot_login.password)
 # client.run(bot_login.bot_token)
 
-print('*************************************')
-print('script arrived here')
-print('*************************************')
-client.run(bot_login.user,bot_login.password)
-print('*************************************')
-print('script arrived here2')
-print('*************************************')
+# print('*************************************')
+# print('script arrived here')
+# print('*************************************')
+# client.run(bot_login.user,bot_login.password)
+# print('*************************************')
+# print('script arrived here2')
+# print('*************************************')

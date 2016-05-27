@@ -228,3 +228,67 @@
 # print(calendar.month(date.today().year,date.today().month))
 # # c = calendar.TextCalendar(calendar.SUNDAY)
 # # c.prmonth(date.today().year,date.today().month)
+
+from PIL import Image
+
+im = Image.open("C:/Users/Zeng/PycharmProjects/test 1/cu.jpg")
+print(im.format, im.size, im.mode)
+im.show()
+# box = (100, 100, 400, 400)
+box = (0, 0, 400, 400)
+box2 = (100, 100, 400, 400)
+region = im.crop(box2)
+# region.show()
+region = region.transpose(Image.ROTATE_90)
+# region.show()
+# im.paste(region, box2)
+
+def roll(image, delta):
+    "Roll an image sideways"
+
+    xsize, ysize = image.size
+
+    delta = delta % xsize
+    if delta == 0: return image
+
+    part1 = image.crop((0, 0, delta, ysize))
+    part2 = image.crop((delta, 0, xsize, ysize))
+    # part1.show() # strange bug?
+    # part2.show()
+    image.paste(part2, (0, 0, xsize-delta, ysize))
+    image.paste(part1, (xsize-delta, 0, xsize, ysize))
+
+    return image
+
+# im = roll(im,350)
+# im.show()
+
+# r, g, b = im.split()
+# im = Image.merge("RGB", (b, g, r))
+# im.show()
+
+# out = im.resize((128, 128))
+# out = im.rotate(45)
+# out.show()
+
+# # multiply pixels by 1.2
+# out = im.point(lambda i: i * 1.2)
+# out.show()
+
+# split the image into individual bands
+source = im.split()
+
+R, G, B = 0, 1, 2
+
+# select regions where red is less than 100
+mask = source[R].point(lambda i: i < 100 and 255)
+
+# process the green band
+out = source[G].point(lambda i: i * 0.7)
+
+# paste the processed band back, but only where red was < 100
+source[G].paste(out, None, mask)
+
+# build a new multiband image
+im = Image.merge(im.mode, source)
+im.show()

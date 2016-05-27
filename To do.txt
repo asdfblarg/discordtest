@@ -2,15 +2,20 @@
 - wilson: @mention a random online member to do something // !shotnot
 - make lewd have rating checker
 - dice / rand gamble
+
 - add 'or' functionality to !choice
 - switch to sets in !choice
-- @sui-bot say command
+
+- @sui-bot say command // done
+    -delete the !say message
 - lern to delete and edit messages
-- lern to send attachments
+- lern to send attachments // done
 - set game command
 - get user id with @mention or !uid
 - add twitch emotes // done
     - add sub emotes with "lewd"
+    https://twitchemotes.com/search?query=lewd
+    https://twitchemotes.com/search?query=smug
 
 
 - use PIL to add text to image in python
@@ -26,3 +31,10 @@
 - add more sass / sui mentions
 - refactor code to be more modular
 
+
+
+# unrelated to bot
+- make make script to parse my bookmarks
+- be able to open and close links in firefox with python
+
+- fukin reinstall win 10 on ssd
