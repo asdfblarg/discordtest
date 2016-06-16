@@ -1,7 +1,16 @@
+UPGRADE SSD TO WINDOWS 10
+
+- fix/make sure twitch emote works both in cmd and in pycharm
+- make annoying xD parse thingy
+
+- change lewdargs to use danbooru api json to speed up performance
+
 - dumping lewd or any web link to specific channel
 - wilson: @mention a random online member to do something // !shotnot
 - make lewd have rating checker
 - dice / rand gamble
+
+- quotes command?
 
 - add 'or' functionality to !choice
 - switch to sets in !choice
@@ -9,17 +18,25 @@
 - @sui-bot say command // done
     -delete the !say message
 - lern to delete and edit messages
-- lern to send attachments // done
+
 - set game command
-- get user id with @mention or !uid
+
+- get user id with !uid @mention
+
 - add twitch emotes // done
     - add sub emotes with "lewd"
     https://twitchemotes.com/search?query=lewd
     https://twitchemotes.com/search?query=smug
 
+- parse overwatch wiki for all quotes and update quotes
+    http://overwatch.gamepedia.com/Tracer/Quotes
 
-- use PIL to add text to image in python
-- figure out sui and tamamo interactions
+- make flan puns command?
+    - flantastic
+
+- use PIL to add text to image in python // done
+
+- figure out sui and tamamo interactions?
 - logs: 2016-05-06 01:56:28.560000 | Death To Mumble | boomersauce | #general |
 
 - league api commands

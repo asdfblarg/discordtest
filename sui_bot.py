@@ -123,7 +123,7 @@ def on_message(message):
             except UnicodeEncodeError:
                 print("unicode error")
             printstring += str(channel)+" : "+str(channel.id) + "\n"
-            file.write(str(channel).encode("utf-8")+'\n'.encode("utf-8"))
+            # file.write(str(channel).encode("utf-8")+'\n'.encode("utf-8"))
         yield from client.send_message(message.channel, printstring)
 
     if message.content.startswith('!randmember'):
@@ -140,8 +140,12 @@ def on_message(message):
         except OSError:
             yield from client.send_message(message.channel, twitch_emote.twitch_emote(args[0]))
 
-    if message.content.startswith('!gotstream'):
-        yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \t<http://comfy.zone/> \nnot live: \n<http://www.streamlord.com/watch-tvshow-Game-of-thrones-2.html>')
+    if message.content.startswith('!got'):
+        yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \t<http://comfy.zone/>'+
+                                                       '\nnot live:'+
+                                                       '\n<http://www.streamlord.com/watch-tvshow-Game-of-thrones-2.html>'+
+                                                       '\n<http://vumoo.at/tv/play/watch-game-of-thrones-87268>'
+                                       )
 
 #################
 
@@ -153,6 +157,17 @@ def on_message(message):
             yield from client.send_message(message.channel,'http://puu.sh/oNKua/2dd17969bd.png')
         else:
             yield from client.send_message(message.channel,'http://puu.sh/oFvXh/c73ed52869.jpg')
+
+    if message.content.startswith("!overwatch") or "weedy" in message.content.lower().split() or "victor" in message.content.lower().split():
+        yield from client.send_message(message.channel,random.choice(fleentstones.overwatch))#,tts=True)
+
+    if message.content.startswith("!insult"):
+        if random.randrange(10) != 2:
+            name = random.choice(fleentstones.firstnamelist) + " " + random.choice(fleentstones.lastnamelist)
+        else:
+            name = random.choice(fleentstones.fullnamelist)
+        yield from client.send_message(message.channel,"You " + name + " looking ass nigga")
+
 
 
 #inside jokes
@@ -182,6 +197,7 @@ def on_message(message):
         shitpaulsonsays = ['same','tfti',"k",'hon hon baguette','what','punda']
         yield from client.send_message(message.channel,random.choice(shitpaulsonsays))#,tts=True)
 
+
     # if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
     #     yield from client.send_message(message.channel,'F U C K  C H I N A')
 
@@ -203,7 +219,7 @@ def on_message(message):
     #     client.close()
     #     quit()
 
-client.run(bot_login.user,bot_login.password)
+client.run(bot_login.user, bot_login.password)
 # client.run(bot_login.bot_token)
 
 # print('*************************************')
