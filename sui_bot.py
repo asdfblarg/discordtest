@@ -9,12 +9,14 @@ import random
 import rand_choice
 import fleentstones
 
-
+import time
 import calendar
 from datetime import date
 
 import twitch_emote
 # import testing
+import collections
+import os
 
 logging.basicConfig(level=logging.INFO)
 
@@ -25,6 +27,10 @@ logging.basicConfig(level=logging.INFO)
 # logger.addHandler(handler)
 
 client = discord.Client()
+c = collections.Counter(['eevee'])
+c['eevee'] = 0 #160
+# benny, 131
+
 
 @client.event
 @asyncio.coroutine
@@ -33,17 +39,39 @@ def on_ready():
     print(client.user.name)
     print(client.user.id)
 
+
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    if message.author == client.user:
-        return
+
     if message.server:
-        print('message received from', message.channel,"by",message.author,"in", message.server.id)
+        try:
+            print('message received from', message.channel,"by",message.author,"in", message.server.id)
+        except:
+            print('message received from', message.channel,"by",str(message.author).encode("utf-8"),"in", message.server.id)
     else:
         print('message received from', message.channel,"by",message.author)
     print(message.clean_content.encode("utf-8"))
     print(message.content.encode("utf-8"))
+
+    if message.author == client.user:
+        return
+
+
+    # if message.content.startswith('!quotespam') and message.author.id == '145789904113238016':
+    #     # tamamo = message.server.get_member('176121780757331968')
+    #     tamamo = discord.utils.find(lambda m: m.name == 'Tamamo', message.channel.server.members)
+    #     for revenge in range(30):
+    #         time.sleep(1)
+    #         yield from client.send_message(message.channel, '{2} q add "{0}" {1}'.format("revenge_with_really_really_super_duper_but_not_that_long_quote_name_"+str(revenge),"salt_shitposting_spam",tamamo.mention))
+    #     #yield from client.send_message(message.channel, "<@!146444241978130442> at least i didn't generate random letters for the quote name")
+    #     yield from client.send_message(message.channel, "<@!176121780757331968> q")
+    #
+    # if message.content.startswith('!unquotespam') and message.author.id == '145789904113238016':
+    #     tamamo = discord.utils.find(lambda m: m.name == 'Tamamo', message.channel.server.members)
+    #     for revenge in range(2):
+    #         yield from client.send_message(message.channel, '{1} q del "{0}"'.format("revenge_with_really_really_super_duper_but_not_that_long_quote_name_"+str(revenge),tamamo.mention))
+
     # try:
     #     print(message.clean_content.encode("utf-8"))
     #     print(message.content)# testing emojis
@@ -51,6 +79,26 @@ def on_message(message):
     #     print(message.content.encode("utf-8"))
     # if message.content.startswith('!test'):
     #     yield from client.send_message(message.channel, testing.hangman())
+
+    # if "https://www.reddit.com/r/pokemongo/comments/4t0cpo/" in message.content.lower() or \
+    #                 "http://tinyurl.com/je8xnyz" in message.content.lower() or \
+    #                 "http://bit.ly/2a0p7hW" in message.content or \
+    #                 "http://tinyurl.com/eevee-trigger" in message.content:
+    #     yield from client.delete_message(message)
+
+
+    if 'eevee' in message.content.lower():
+        if message.server.id == '123567978175397888' and message.channel.id == '123567978175397888':
+            c['eevee'] +=1
+            yield from client.send_message(message.channel, "eevee has been mentioned **"+ str(c['eevee'])+"** times." )
+            for eevees in range(c['eevee']%10):
+                yield from client.send_message(message.channel, "EEVEE TRIGGERED!")
+                # yield from asyncio.sleep(0.4)
+
+    if 'lemao' in message.content.lower():
+        yield from asyncio.sleep(0.8)
+        yield from client.send_message(message.channel, "lemao")
+
     if message.content.startswith('!sin'):
         yield from client.send_message(message.channel, "I hate sin")
 
@@ -89,8 +137,14 @@ def on_message(message):
     if "stfu" in message.content.lower():
         yield from client.send_message(message.channel,'no you!')
 
-    if message.content.startswith('!say'):
-        yield from client.send_message(message.channel, message.content[4:].strip())
+    if message.content.lower().startswith('!say'):
+        yield from client.delete_message(message)
+        say_msg = message.content[4:].strip()
+        say_tts = False
+        if say_msg.lower().startswith("tts"):
+            say_tts = True
+            say_msg = say_msg[3:].strip()
+        yield from client.send_message(message.channel, say_msg, tts = say_tts)
 
     if message.content.startswith('!list'):
         memberslist = message.server.members
@@ -136,9 +190,13 @@ def on_message(message):
             if len(args) > 1:
                 yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0],args[1]))
             else:
-                yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0]))
+                yield from client.send_file(message.channel, twitch_emote.twitch_emote(args[0],""))
         except OSError:
-            yield from client.send_message(message.channel, twitch_emote.twitch_emote(args[0]))
+            emote_path = twitch_emote.twitch_emote(args[0],"")
+            if os.path.isfile(emote_path):
+                yield from client.send_file(message.channel, emote_path)
+            else:
+                yield from client.send_message(message.channel, emote_path)
 
     if message.content.startswith('!got'):
         yield from client.send_message(message.channel,'live: \n<http://joowz.com/> \t <http://joowz.org/> \t<http://comfy.zone/>'+
@@ -151,6 +209,18 @@ def on_message(message):
 
     if message.content.startswith('!giveup'):
         yield from client.send_message(message.channel,'ＮＥＶＥＲ ＧＩＶＥ ＵＰ')
+
+    if message.content.startswith('!wake'):
+        yield from client.send_message(message.channel,"**CAN'T WAKE UP**")
+
+    if message.content.startswith('!help'):
+        britinsult = random.choice(fleentstones.firstnamelist) + " " + random.choice(fleentstones.lastnamelist)
+        helpfulphrases = [', faggot',', bitch',"",', ya bastard', ", you " + britinsult.lower(),
+                          ". you won't get any from me", " and vote for trump", ", you " + britinsult.lower()]
+        yield from client.send_message(message.channel,"help yourself"+ random.choice(helpfulphrases))
+
+    if message.content.lower().startswith('!highnoon') or message.content.lower().startswith('!high noon'):
+        yield from client.send_message(message.channel,fleentstones.high_noon())
 
     if message.content.startswith('!howard'):
         if message.content.startswith('!howardbutt'):
@@ -168,13 +238,22 @@ def on_message(message):
             name = random.choice(fleentstones.fullnamelist)
         yield from client.send_message(message.channel,"You " + name + " looking ass nigga")
 
-
+    if '┬──┬ﾉ(° -°ﾉ)' in message.content:
+        yield from client.send_message(message.channel,'(╯°□°）╯︵ ┻━┻')
 
 #inside jokes
 
     if "china" in message.content.lower() or "chinese" in message.content.lower() or b'\xf0\x9f\x87\xa8\xf0\x9f\x87\xb3' in message.content.encode("utf-8"):
         yield from client.send_message(message.channel,'F U C K  C H I N A')
 
+    if "i guess" in message.content.lower():
+        yield from client.send_message(message.channel,"¯\_(ツ)_/¯")
+
+    if "pokemon" in message.content.lower():
+        if random.randrange(10) < 3:
+            yield from client.send_message(message.channel,'Pokemon is gay')
+
+#### snuggle censor
     try:
         if message.server.id == '119847653063262209':
             return

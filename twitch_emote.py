@@ -12,16 +12,22 @@ def twitch_emote(emote = "", size = '1.0'):
         size = '3.0'
     else:
         size = '1.0'
-    emote_path = current_dir+'/twitch_emotes/'+size+'/'+emote+'.jpg'
+    emote_path = current_dir+'/twitch_emotes/'+size+'/'+emote+'.png'
     emote_path = os.path.normpath(emote_path)
     print("argv: "+sys.argv[0])
     print("cur dir: "+test_dir)
-    print("emote path: "+emote_path)	
+    print("emote path: "+emote_path)
+
     if os.path.isfile(emote_path):
         return emote_path
+
+    elif os.path.isfile(emote_path[:-4]+'.gif'):
+        return emote_path[:-4]+'.gif'
+
     else:
-        return (emote+" emote not found!\nplease use a vaild face emote from <https://twitchemotes.com>").strip()
+        return (emote+" emote not found!\n"+
+                      "please use a vaild face emote from <https://twitchemotes.com> or <https://nightdev.com/betterttv/faces.php>").strip()
 
 # args = ['f']
 # print(twitch_emote(args[0]))
-# print(twitch_emote('stinkychfeese','medium'))
+# print(twitch_emote('stinkycheese','medium'))

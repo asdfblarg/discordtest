@@ -1,7 +1,13 @@
 UPGRADE SSD TO WINDOWS 10
 
 - fix/make sure twitch emote works both in cmd and in pycharm
+    - set default to medium instead of small
+    - add support for api searching
+
 - make annoying xD parse thingy
+
+- make high noon command
+    - http://www.timeanddate.com/worldclock/sunearth.html
 
 - change lewdargs to use danbooru api json to speed up performance
 
@@ -11,13 +17,16 @@ UPGRADE SSD TO WINDOWS 10
 - dice / rand gamble
 
 - quotes command?
+    - use message id to quote, or use mentions(honor system)
+    - http://puu.sh/pCVHE/bee236a2a4.png
 
 - add 'or' functionality to !choice
-- switch to sets in !choice
 
+- switch to sets in !choice // done
 - @sui-bot say command // done
-    -delete the !say message
-- lern to delete and edit messages
+    -delete the !say message // done
+
+- lern to delete and edit messages // done?
 
 - set game command
 
@@ -36,7 +45,7 @@ UPGRADE SSD TO WINDOWS 10
 
 - use PIL to add text to image in python // done
 
-- figure out sui and tamamo interactions?
+- figure out sui and tamamo interactions? // NOOOOOOOOOOOO NEVER
 - logs: 2016-05-06 01:56:28.560000 | Death To Mumble | boomersauce | #general |
 
 - league api commands

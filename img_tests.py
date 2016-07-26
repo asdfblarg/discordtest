@@ -3,9 +3,9 @@ from PIL import ImageFont, ImageDraw
 
 image = Image.open("C:/Users/Zeng/PycharmProjects/test 1/cu.jpg")
 im = Image.open("C:/Users/Zeng/PycharmProjects/test 1/cu.jpg")
-im3 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/OSkomodo.jpg")
-im1 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/MingLee.jpg")
-im2 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/OSkomodo.jpg")
+im3 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/OSkomodo.png")
+im1 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/MingLee.png")
+im2 = Image.open("C:/Users/Zeng/PycharmProjects/discordtest/twitch_emotes/3.0/OSkomodo.png")
 
 draw = ImageDraw.Draw(image)
 # use a truetype font
@@ -13,9 +13,9 @@ font = ImageFont.truetype("C:/Windows/Fonts/arialnb.ttf", 30)
 # draw.text((10, 10), "hello", font=font, fill='blue')
 # draw.text((10, 25), "world", font=font, fill='blue')
 draw.text((350, 40), "Ayy", font=font, fill='blue')
-draw.text((350, 70), "Mofi", font=font, fill='blue')
+draw.text((350, 70), "jimethn", font=font, fill='blue')
 draw.text((350, 100), ":D", font=font, fill='blue')
-image.show()
+# image.show()
 
 # draw = ImageDraw.Draw(im)
 # draw.line((0, 0) + im.size, fill=128)
